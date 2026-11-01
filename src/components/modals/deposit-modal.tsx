@@ -46,7 +46,7 @@ export function DepositModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <DialogHeader title="Deposit Funds" description="Add money to your Stocks balance." />
+        <DialogHeader title="Deposit Funds" description="Add money to your Mirevo balance." />
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 pt-3">
           <Field label="Amount (₦)" htmlFor="dep-amount" error={errors.amount?.message}>
             <Input
@@ -65,7 +65,7 @@ export function DepositModal({
               <option value="card">Debit card</option>
             </Select>
           </Field>
-          <div className="flex gap-2.5 rounded-md bg-muted p-3 text-sm text-muted-foreground">
+          <div className="flex gap-2.5 rounded-lg bg-muted p-3 text-sm text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0" />
             <p>You&apos;ll be redirected to Korapay to complete payment securely.</p>
           </div>

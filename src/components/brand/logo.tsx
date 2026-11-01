@@ -1,16 +1,23 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/** The Stocks "S" mark, on a white rounded tile so it reads on any background. */
+/** The Mirevo "M" mark: a rising zig-zag on an ink tile. */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <Image
-      src="/logo-mark.png"
-      alt="Stocks"
-      width={128}
-      height={128}
-      className={cn("size-8 shrink-0 rounded-lg bg-white object-contain", className)}
-    />
+    <span
+      role="img"
+      aria-label="Mirevo"
+      className={cn("grid size-8 shrink-0 place-items-center rounded-lg bg-ink", className)}
+    >
+      <svg viewBox="0 0 64 64" className="size-[68%]" fill="none" aria-hidden>
+        <path
+          d="M10 50V16l22 22 22-22v34"
+          stroke="var(--accent)"
+          strokeWidth="9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </span>
   );
 }
 
@@ -22,15 +29,15 @@ export function Logo({
   tone?: "dark" | "light";
 }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("inline-flex items-center gap-2", className)}>
       <LogoMark />
       <span
         className={cn(
-          "font-display text-xl font-semibold tracking-tight",
-          tone === "light" ? "text-white" : "text-foreground",
+          "font-display text-xl font-extrabold tracking-tight",
+          tone === "light" ? "text-ink-foreground" : "text-foreground",
         )}
       >
-        Stocks
+        mirevo
       </span>
     </span>
   );

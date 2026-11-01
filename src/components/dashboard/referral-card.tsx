@@ -19,7 +19,7 @@ export function ReferralCard({
   earnings: ReferralEarnings;
 }) {
   const link = `${baseUrl}/register?ref=${code}`;
-  const message = `Join me on Stocks: ${link}`;
+  const message = `Join me on Mirevo: ${link}`;
 
   async function copy() {
     try {
@@ -35,17 +35,17 @@ export function ReferralCard({
       <Card className="p-5">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="grid size-11 place-items-center rounded-md bg-navy text-sky-300">
+            <div className="grid size-11 place-items-center rounded-lg bg-ink text-accent">
               <Share2 className="size-5" />
             </div>
             <div>
-              <h2 className="font-display font-semibold">Your Invite Link</h2>
+              <h2 className="font-display text-lg font-extrabold">Your Invite Link</h2>
               <p className="text-sm text-muted-foreground">
                 Earn 20% of every deposit made by people you refer.
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs font-semibold">
+          <div className="flex items-center gap-1.5 rounded-lg bg-muted px-3 py-1 text-xs font-bold">
             <Users className="size-3.5" /> {count} {count === 1 ? "signup" : "signups"}
           </div>
         </div>
@@ -67,7 +67,7 @@ export function ReferralCard({
           </Button>
           <Button size="sm" variant="outline" asChild>
             <a
-              href={`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent("Join me on Stocks")}`}
+              href={`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent("Join me on Mirevo")}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -82,15 +82,15 @@ export function ReferralCard({
 
       <Card className="p-5">
         <div className="flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-md bg-navy text-sky-300">
+          <div className="grid size-11 place-items-center rounded-lg bg-ink text-accent">
             <TrendingUp className="size-5" />
           </div>
           <div>
-            <h2 className="font-display font-semibold">Referral Earnings</h2>
+            <h2 className="font-display text-lg font-extrabold">Referral Earnings</h2>
             <p className="text-sm text-muted-foreground">20% commission on every deposit by your referrals.</p>
           </div>
           <div className="ml-auto text-right">
-            <p className="font-display text-xl font-semibold">{formatMoney(earnings.total)}</p>
+            <p className="font-display text-xl font-extrabold">{formatMoney(earnings.total)}</p>
             <p className="text-xs text-muted-foreground">Total earned</p>
           </div>
         </div>
@@ -107,7 +107,7 @@ export function ReferralCard({
                   <p className="font-medium">Referral commission</p>
                   <p className="text-xs text-muted-foreground">{formatDate(tx.created_at, true)}</p>
                 </div>
-                <span className="font-semibold text-green-600">+{formatMoney(tx.amount)}</span>
+                <span className="font-semibold text-success">+{formatMoney(tx.amount)}</span>
               </div>
             ))}
           </div>

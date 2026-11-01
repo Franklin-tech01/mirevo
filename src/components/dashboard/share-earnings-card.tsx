@@ -28,13 +28,13 @@ export function ShareEarningsCard({
     <Card className="p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-md bg-navy text-sky-300">
+          <div className="grid size-11 place-items-center rounded-lg bg-ink text-accent">
             <TrendingUp className="size-5" />
           </div>
           <div>
-            <h2 className="font-display font-semibold">Daily Share Earnings</h2>
+            <h2 className="font-display text-lg font-extrabold">Daily Package Earnings</h2>
             <p className="text-sm text-muted-foreground">
-              Every share you hold pays out daily, straight to your balance.
+              Every package you hold pays out daily, straight to your balance.
             </p>
           </div>
         </div>
@@ -48,20 +48,20 @@ export function ShareEarningsCard({
       <div className="mt-5 grid grid-cols-2 gap-3">
         <div className="rounded-md bg-muted/60 p-3">
           <p className="text-xs text-muted-foreground">Daily rate</p>
-          <p className="tabular font-display text-xl font-semibold">
+          <p className="tabular font-display text-xl font-extrabold">
             {SHARE_EARNINGS_ENABLED ? formatMoney(dailyRate) : "Paused"}
           </p>
         </div>
         <div className="rounded-md bg-muted/60 p-3">
           <p className="text-xs text-muted-foreground">Total earned</p>
-          <p className="tabular font-display text-xl font-semibold">{formatMoney(totalEarned)}</p>
+          <p className="tabular font-display text-xl font-extrabold">{formatMoney(totalEarned)}</p>
         </div>
       </div>
 
       <p className="mt-4 text-xs text-muted-foreground">
         {dailyRate > 0
           ? "Credited automatically once a day — no action needed."
-          : "Buy a share to start earning a daily payout."}
+          : "Buy a package to start earning a daily payout."}
       </p>
     </Card>
   );

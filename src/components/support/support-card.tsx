@@ -15,7 +15,7 @@ export function SupportCard() {
       {options.map((o) => {
         const inner = (
           <>
-            <span className="grid size-11 shrink-0 place-items-center rounded-md bg-navy text-sky-300">
+            <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-ink text-accent">
               <o.icon className="size-5" />
             </span>
             <span className="min-w-0 flex-1">
@@ -29,7 +29,7 @@ export function SupportCard() {
         );
         return o.href ? (
           <a key={o.label} href={o.href} target="_blank" rel="noopener noreferrer" className="block">
-            <Card className="flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-pop">{inner}</Card>
+            <Card className="flex items-center gap-3 p-4 transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard">{inner}</Card>
           </a>
         ) : (
           <Card key={o.label} className="flex items-center gap-3 p-4 opacity-60">

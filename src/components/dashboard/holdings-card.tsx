@@ -17,7 +17,7 @@ interface Row {
   invested: number;
 }
 
-/** One row per purchase in `holdings` — group into one row per share owned. */
+/** One row per purchase in `holdings` — group into one row per package owned. */
 function groupByShare(holdings: Holding[]): Row[] {
   const byShare = new Map<string, Row>();
   for (const h of holdings) {
@@ -28,7 +28,7 @@ function groupByShare(holdings: Holding[]): Row[] {
     } else {
       byShare.set(h.share_id, {
         shareId: h.share_id,
-        name: h.shares?.name ?? "Stocks Share",
+        name: h.shares?.name ?? "Mirevo Package",
         symbol: h.shares?.symbol ?? "",
         tier: h.shares?.tier ?? "standard",
         quantity: h.quantity,
@@ -45,22 +45,22 @@ export function HoldingsCard({ holdings }: { holdings: Holding[] }) {
   return (
     <Card className="p-5">
       <div className="flex items-center justify-between">
-        <h2 className="font-display font-semibold">Your Shares</h2>
+        <h2 className="font-display text-lg font-extrabold">Your packages</h2>
         {rows.length > 0 && (
-          <Link href="/marketplace" className="text-sm font-semibold text-primary hover:underline">
-            Buy more
+          <Link href="/marketplace" className="text-sm font-bold text-primary underline-offset-4 hover:underline">
+            Buy more →
           </Link>
         )}
       </div>
 
       {rows.length === 0 ? (
-        <div className="mt-4 flex flex-col items-center rounded-md border border-dashed py-8 text-center">
-          <div className="grid size-10 place-items-center rounded-full bg-muted text-muted-foreground">
+        <div className="mt-4 flex flex-col items-center rounded-xl border-[1.5px] border-dashed border-ink/40 py-8 text-center">
+          <div className="grid size-10 place-items-center rounded-lg bg-accent text-accent-foreground">
             <Layers className="size-5" />
           </div>
-          <p className="mt-3 text-sm font-medium">You don&apos;t own any shares yet</p>
-          <Link href="/marketplace" className="mt-1 text-sm font-semibold text-primary hover:underline">
-            Browse the marketplace
+          <p className="mt-3 text-sm font-bold">You don&apos;t own any packages yet</p>
+          <Link href="/marketplace" className="mt-1 text-sm font-bold text-primary underline-offset-4 hover:underline">
+            Browse packages →
           </Link>
         </div>
       ) : (
@@ -69,17 +69,15 @@ export function HoldingsCard({ holdings }: { holdings: Holding[] }) {
             <li key={r.shareId} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
               <LogoMark className="size-9 shrink-0" />
               <div className="min-w-0 flex-1">
-                <p className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+                <p className="flex flex-wrap items-center gap-2 text-sm font-bold">
                   {r.name}
-                  <Badge tone={tierTone[r.tier]} className="px-2 py-0 text-[10px] uppercase">
-                    {r.tier}
-                  </Badge>
+                  <Badge tone={tierTone[r.tier]}>{r.tier}</Badge>
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {r.quantity} {r.quantity === 1 ? "share" : "shares"} · {r.symbol}
+                  {r.quantity} × {r.symbol}
                 </p>
               </div>
-              <p className="tabular shrink-0 text-right text-sm font-semibold">{formatMoney(r.invested)}</p>
+              <p className="tabular shrink-0 text-right text-sm font-extrabold">{formatMoney(r.invested)}</p>
             </li>
           ))}
         </ul>

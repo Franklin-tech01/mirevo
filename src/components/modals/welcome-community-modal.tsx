@@ -33,14 +33,14 @@ export function WelcomeCommunityModal({ userId }: { userId: string }) {
       <DialogContent>
         <div className="flex flex-col items-center px-6 pb-6 pt-8 text-center">
           <LogoMark className="size-14" />
-          <h2 className="mt-4 font-display text-xl font-semibold">Welcome to Stocks 🎉</h2>
+          <h2 className="mt-4 font-display text-xl font-extrabold">Welcome to Mirevo 🎉</h2>
           <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-            Stay connected with the Stocks community for updates, announcements, market information
+            Stay connected with the Mirevo community for updates, announcements, market information
             and support.
           </p>
           <div className="mt-6 grid w-full gap-3">
             <CommunityButton href={links.communityGroup} icon={<Users />} label="Join Community Group" />
-            <CommunityButton href={links.communityChannel} icon={<Megaphone />} label="Join Channel" variant="navy" />
+            <CommunityButton href={links.communityChannel} icon={<Megaphone />} label="Join Channel" variant="outline" />
             <Button variant="ghost" onClick={dismiss}>
               Maybe Later
             </Button>
@@ -55,12 +55,12 @@ function CommunityButton({
   href,
   icon,
   label,
-  variant = "default",
+  variant = "accent",
 }: {
   href: string;
   icon: React.ReactNode;
   label: string;
-  variant?: "default" | "navy";
+  variant?: "accent" | "outline";
 }) {
   if (!href) {
     return (

@@ -20,7 +20,7 @@ export const links = {
  * kill switch: false stops all new bonus credits immediately.
  */
 export const BONUSES_ENABLED = true;
-export const WELCOME_BONUS_AMOUNT = 600;
+export const WELCOME_BONUS_AMOUNT = 800;
 export const DAILY_LOGIN_BONUS = 200;
 
 /**
@@ -30,7 +30,7 @@ export const DAILY_LOGIN_BONUS = 200;
  */
 export const SHARE_EARNINGS_ENABLED = true;
 
-export const COMMUNITY_POPUP_STORAGE_KEY = "stocks:community-popup-dismissed";
+export const COMMUNITY_POPUP_STORAGE_KEY = "mirevo:community-popup-dismissed";
 
 /**
  * Deposits (Korapay), share purchases and withdrawal requests are all live.
@@ -40,7 +40,7 @@ export const COMMUNITY_POPUP_STORAGE_KEY = "stocks:community-popup-dismissed";
 export const WITHDRAWALS_ENABLED = true;
 
 /** Smallest amount a user can deposit in one go (NGN). Enforced client + server side. */
-export const MIN_DEPOSIT_AMOUNT = 3000;
+export const MIN_DEPOSIT_AMOUNT = 4000;
 
 /** Smallest withdrawal request (NGN). Enforced client + server side. */
 export const MIN_WITHDRAWAL_AMOUNT = 800;
@@ -52,11 +52,11 @@ export const WITHDRAWAL_CHARGE_RATE = 0.2;
 export const REFERRAL_RATE = 0.2;
 
 /** Length of every share plan, in days. */
-export const PLAN_DURATION_DAYS = 38;
+export const PLAN_DURATION_DAYS = 40;
 
 /**
  * Public site URL from BETTER_AUTH_URL, tolerant of a missing scheme or trailing
- * slash ("stocks-pro.vercel.app" -> "https://stocks-pro.vercel.app").
+ * slash ("mirevo.vercel.app" -> "https://mirevo.vercel.app").
  */
 export function siteUrl(): string | undefined {
   const raw = process.env.BETTER_AUTH_URL?.trim();

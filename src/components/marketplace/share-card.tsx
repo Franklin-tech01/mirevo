@@ -2,48 +2,63 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { LogoMark } from "@/components/brand/logo";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { useModals } from "@/components/modals/modals-provider";
-import { formatMoney } from "@/lib/utils";
+import { cn, formatMoney } from "@/lib/utils";
 import { PLAN_DURATION_DAYS } from "@/lib/config";
 import type { Share } from "@/lib/types";
 
-const tierTone = { standard: "neutral", premium: "brand", vip: "navy" } as const;
-
+/** Ticket-style package card: ink header with the price, ledger rows for the payout. */
 export function ShareCard({ share }: { share: Share }) {
   const { openBuy } = useModals();
+  const vip = share.tier === "vip";
   return (
-    <Card className="group flex flex-col p-5 transition hover:-translate-y-0.5 hover:shadow-pop">
-      <div className="flex items-start justify-between">
-        <LogoMark className="size-12" />
-        <div className="flex flex-col items-end gap-1.5">
-          <Badge tone={tierTone[share.tier]} className="uppercase">
-            {share.tier}
-          </Badge>
-          {share.badge && <Badge tone="brand">{share.badge}</Badge>}
+    <article className="surface group flex flex-col overflow-hidden transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-hard">
+      <header className={cn("p-5", vip ? "bg-accent text-accent-foreground" : "bg-ink text-ink-foreground")}>
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <h3 className="font-display text-2xl font-extrabold leading-none">{share.name}</h3>
+            <p className={cn("mt-1 text-xs font-semibold", vip ? "text-accent-foreground/70" : "text-ink-muted")}>
+              {share.symbol}
+            </p>
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <Badge tone={vip ? "navy" : "brand"}>{share.tier}</Badge>
+            {share.badge && <Badge tone="warning">{share.badge}</Badge>}
+          </div>
         </div>
+        <p className="tabular mt-5 font-display text-4xl font-extrabold tracking-tight">{formatMoney(share.price)}</p>
+      </header>
+
+      {/* perforation */}
+      <div aria-hidden className="relative h-0 border-t-[1.5px] border-dashed border-ink">
+        <span className="absolute -left-2.5 -top-2.5 size-5 rounded-full border-[1.5px] border-ink bg-background" />
+        <span className="absolute -right-2.5 -top-2.5 size-5 rounded-full border-[1.5px] border-ink bg-background" />
       </div>
 
-      <h3 className="mt-4 font-display text-lg font-semibold">{share.name}</h3>
-      <p className="text-sm text-muted-foreground">{share.description ?? "Stocks Share"}</p>
-      <p className="mt-0.5 text-xs font-medium text-muted-foreground">{share.symbol}</p>
+      <dl className="flex-1 space-y-2.5 p-5 text-sm">
+        <div className="flex items-center justify-between">
+          <dt className="text-muted-foreground">Daily profit</dt>
+          <dd className="tabular font-extrabold text-success">{formatMoney(share.daily_earning)}</dd>
+        </div>
+        <div className="flex items-center justify-between">
+          <dt className="text-muted-foreground">Duration</dt>
+          <dd className="font-bold">{PLAN_DURATION_DAYS} days</dd>
+        </div>
+        <div className="flex items-center justify-between border-t pt-2.5">
+          <dt className="font-semibold">Total profit</dt>
+          <dd className="tabular font-display text-lg font-extrabold">
+            {formatMoney(share.daily_earning * PLAN_DURATION_DAYS)}
+          </dd>
+        </div>
+      </dl>
 
-      <p className="tabular mt-4 font-display text-2xl font-semibold">{formatMoney(share.price)}</p>
-      <p className="tabular text-sm font-semibold text-success">
-        {formatMoney(share.daily_earning)}<span className="font-normal text-muted-foreground"> / day · {PLAN_DURATION_DAYS} days</span>
-      </p>
-      <p className="tabular text-xs text-muted-foreground">
-        Total return {formatMoney(share.daily_earning * PLAN_DURATION_DAYS)}
-      </p>
-
-      <div className="mt-4 flex items-center justify-between gap-3">
+      <footer className="flex items-center justify-between gap-3 px-5 pb-5">
         <StatusBadge kind="share" status={share.status} />
-        <Button disabled={share.status !== "available"} onClick={() => openBuy(share)}>
-          Buy Share
+        <Button variant="accent" disabled={share.status !== "available"} onClick={() => openBuy(share)}>
+          Invest
         </Button>
-      </div>
-    </Card>
+      </footer>
+    </article>
   );
 }

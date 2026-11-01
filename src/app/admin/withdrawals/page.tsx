@@ -16,7 +16,7 @@ export default async function AdminWithdrawalsPage({ searchParams }: { searchPar
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold tracking-tight">Withdrawals</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight">Withdrawals</h1>
       <p className="mt-1 text-sm text-muted-foreground">
         Pay each request from your own bank/Korapay dashboard, then mark it paid here. The user&apos;s
         balance was already held when they requested it.

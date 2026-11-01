@@ -92,7 +92,7 @@ export function WithdrawModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <DialogHeader title="Withdraw Funds" description="Move money out of your Stocks balance." />
+        <DialogHeader title="Withdraw Funds" description="Move money out of your Mirevo balance." />
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-6 pt-3">
           <Field label="Amount (₦)" htmlFor="wd-amount" error={errors.amount?.message}>
             <Input
@@ -140,10 +140,10 @@ export function WithdrawModal({
             </p>
           )}
 
-          <div className="flex gap-2.5 rounded-md bg-muted p-3 text-sm text-muted-foreground">
+          <div className="flex gap-2.5 rounded-lg bg-muted p-3 text-sm text-muted-foreground">
             <Info className="mt-0.5 size-4 shrink-0" />
             <p>
-              Withdrawals unlock after you buy your first share. The amount is held from your balance immediately
+              Withdrawals unlock after you buy your first package. The amount is held from your balance immediately
               and paid out after review. A {WITHDRAWAL_CHARGE_RATE * 100}% withdrawal charge applies — you receive
               the rest.
             </p>

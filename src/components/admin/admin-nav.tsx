@@ -24,10 +24,10 @@ export function AdminNav() {
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "shrink-0 border-b-2 px-3 py-2.5 text-sm font-medium transition-colors",
+              "shrink-0 border-b-[3px] px-3 py-2.5 text-sm font-bold transition-colors",
               active
-                ? "border-primary text-white"
-                : "border-transparent text-navy-muted hover:text-white",
+                ? "border-accent text-white"
+                : "border-transparent text-ink-muted hover:text-white",
             )}
           >
             {item.label}

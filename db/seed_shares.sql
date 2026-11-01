@@ -1,28 +1,29 @@
 -- ─────────────────────────────────────────────────────────────────────
--- SHARE PACKAGES SEED. Run with:  npm run db:seed
+-- MIREVO PACKAGES SEED. Run with:  npm run db:seed
 -- Idempotent (keyed on symbol): edit a price here and re-run to update it.
 --
 -- tier:   'standard' | 'premium' | 'vip'
 -- status: 'available' | 'sold_out' | 'coming_soon' | 'hidden'
 -- badge:  optional short label shown next to the name, e.g. 'Popular'
 --
--- Each plan runs for 38 days (see PLAN_DURATION_DAYS in src/lib/config.ts).
+-- Each package runs for 40 days (see PLAN_DURATION_DAYS in src/lib/config.ts).
 -- Tiers below are a default split and can be changed freely.
 -- ─────────────────────────────────────────────────────────────────────
 
 insert into public.shares (name, symbol, description, price, daily_earning, tier, badge, status, display_order)
 values
-  ('Stock 1', 'STK1', 'Stocks Plan', 3000, 870, 'standard', null, 'available', 1),
-  ('Stock 2', 'STK2', 'Stocks Plan', 5000, 1450, 'standard', null, 'available', 2),
-  ('Stock 3', 'STK3', 'Stocks Plan', 10000, 2900, 'standard', null, 'available', 3),
-  ('Stock 4', 'STK4', 'Stocks Plan', 20000, 5800, 'standard', null, 'available', 4),
-  ('Stock 5', 'STK5', 'Stocks Plan', 30000, 8700, 'standard', null, 'available', 5),
-  ('Stock 6', 'STK6', 'Stocks Plan', 50000, 14500, 'premium', null, 'available', 6),
-  ('Stock 7', 'STK7', 'Stocks Plan', 70000, 20800, 'premium', null, 'available', 7),
-  ('Stock 8', 'STK8', 'Stocks Plan', 100000, 29000, 'premium', null, 'available', 8),
-  ('Stock 9', 'STK9', 'Stocks Plan', 300000, 87000, 'premium', null, 'available', 9),
-  ('Stock 10','STK10','Stocks Plan', 500000, 145000, 'premium', null, 'available', 10),
-  ('Stock 11','STK11','Stocks VIP Plan', 1000000, 290000, 'vip', null, 'available', 11)
+  ('Bronze',    'BRZ',  'Mirevo Package',     4000,    1200,   'standard', null, 'available', 1),
+  ('Silver',    'SLV',  'Mirevo Package',     8000,    2400,   'standard', null, 'available', 2),
+  ('Gold',      'GLD',  'Mirevo Package',     12000,   3600,   'standard', null, 'available', 3),
+  ('Platinum',  'PLT',  'Mirevo Package',     20000,   6000,   'standard', null, 'available', 4),
+  ('Diamond',   'DIA',  'Mirevo Package',     40000,   12000,  'premium',  null, 'available', 5),
+  ('Premium',   'PRM',  'Mirevo Package',     60000,   18000,  'premium',  null, 'available', 6),
+  ('Ultimate',  'ULT',  'Mirevo Package',     80000,   24000,  'premium',  null, 'available', 7),
+  ('Elite',     'ELT',  'Mirevo Package',     100000,  30000,  'premium',  null, 'available', 8),
+  ('Master',    'MST',  'Mirevo Package',     200000,  60000,  'vip',      null, 'available', 9),
+  ('Executive', 'EXE',  'Mirevo Package',     300000,  90000,  'vip',      null, 'available', 10),
+  ('VIP',       'VIP',  'Mirevo VIP Package', 500000,  150000, 'vip',      null, 'available', 11),
+  ('VVIP',      'VVIP', 'Mirevo VIP Package', 1000000, 350000, 'vip',      null, 'available', 12)
 on conflict (symbol) do update set
   name = excluded.name,
   description = excluded.description,

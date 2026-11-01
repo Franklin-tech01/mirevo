@@ -50,8 +50,8 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold tracking-tight">Create your account</h2>
-      <p className="mt-1.5 text-sm text-muted-foreground">Join Stocks in under a minute.</p>
+      <h2 className="font-display text-3xl font-extrabold tracking-tight">Create your account</h2>
+      <p className="mt-1.5 text-sm text-muted-foreground">Join Mirevo in under a minute.</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-4" noValidate>
         <Field label="Full name" htmlFor="full_name" error={errors.full_name?.message}>

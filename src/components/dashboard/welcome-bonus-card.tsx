@@ -30,12 +30,12 @@ export function WelcomeBonusCard({
     <Card className="overflow-hidden">
       <div className="flex items-start justify-between gap-3 p-5 pb-4">
         <div className="flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-md bg-navy text-sky-300">
+          <div className="grid size-11 place-items-center rounded-lg bg-ink text-accent">
             <Gift className="size-5" />
           </div>
           <div>
-            <h2 className="font-display font-semibold">Welcome Bonus</h2>
-            <p className="text-sm text-muted-foreground">Get rewarded for joining Stocks.</p>
+            <h2 className="font-display text-lg font-extrabold">Welcome Bonus</h2>
+            <p className="text-sm text-muted-foreground">Get rewarded for joining Mirevo.</p>
           </div>
         </div>
         <Badge tone={badge.tone}>{badge.label}</Badge>
@@ -43,7 +43,7 @@ export function WelcomeBonusCard({
 
       <div className="px-5">
         <p className="text-xs text-muted-foreground">Bonus amount</p>
-        <p className="tabular font-display text-3xl font-semibold">
+        <p className="tabular font-display text-3xl font-extrabold">
           {formatMoney(claimed && bonus.amount > 0 ? bonus.amount : WELCOME_BONUS_AMOUNT)}
         </p>
       </div>
@@ -65,7 +65,7 @@ export function WelcomeBonusCard({
             ? "Credited to your balance automatically when you first log in."
             : hasPurchased
               ? `Credited ${formatDate(bonus.claimed_at)}. You can withdraw it.`
-              : `Credited ${formatDate(bonus.claimed_at)}. Withdrawable after your first share purchase.`}
+              : `Credited ${formatDate(bonus.claimed_at)}. Withdrawable after your first package purchase.`}
         </p>
       </div>
     </Card>

@@ -30,7 +30,7 @@ export default async function AdminOverviewPage() {
       icon: ArrowUpFromLine,
     },
     {
-      label: "Share purchases",
+      label: "Package purchases",
       value: formatMoney(o.purchasesTotal),
       hint: `${o.purchasesCount} purchase${o.purchasesCount === 1 ? "" : "s"}`,
       icon: ShoppingBag,
@@ -51,7 +51,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold tracking-tight">Overview</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight">Overview</h1>
       <p className="mt-1 text-sm text-muted-foreground">Live totals from deposits, purchases and withdrawals.</p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

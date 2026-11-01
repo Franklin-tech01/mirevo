@@ -43,7 +43,7 @@ export function PasswordForm() {
 
   return (
     <Card className="max-w-lg p-5 md:p-6">
-      <h2 className="font-display text-lg font-semibold">Change password</h2>
+      <h2 className="font-display text-lg font-extrabold">Change password</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4" noValidate>
         <Field label="Current password" htmlFor="pw0" error={errors.current?.message}>
           <Input id="pw0" type="password" autoComplete="current-password" aria-invalid={!!errors.current} {...register("current")} />

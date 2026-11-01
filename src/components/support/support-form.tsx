@@ -35,7 +35,7 @@ export function SupportForm({ defaultName, defaultEmail }: { defaultName: string
 
   return (
     <Card className="p-5 md:p-6">
-      <h2 className="font-display text-lg font-semibold">Send us a message</h2>
+      <h2 className="font-display text-lg font-extrabold">Send us a message</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4" noValidate>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field label="Name" htmlFor="s-name" error={errors.name?.message}>

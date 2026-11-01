@@ -7,14 +7,14 @@ types.setTypeParser(1700, (v) => parseFloat(v));
 types.setTypeParser(1184, (v) => new Date(v).toISOString());
 types.setTypeParser(1082, (v) => v);
 
-const globalForPg = globalThis as unknown as { stocksPool?: Pool };
+const globalForPg = globalThis as unknown as { mirevoPool?: Pool };
 
 /** One pool per server process (cached across dev hot reloads). */
 export const pool =
-  globalForPg.stocksPool ??
+  globalForPg.mirevoPool ??
   new Pool({ connectionString: process.env.DATABASE_URL, max: 5 });
 
-if (process.env.NODE_ENV !== "production") globalForPg.stocksPool = pool;
+if (process.env.NODE_ENV !== "production") globalForPg.mirevoPool = pool;
 
 export async function query<T = Record<string, unknown>>(text: string, params: unknown[] = []) {
   const res = await pool.query(text, params);

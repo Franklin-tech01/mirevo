@@ -1,24 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
-const sora = Sora({ variable: "--font-sora", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: "Stocks", template: "%s · Stocks" },
-  description: "Stocks share marketplace",
+  title: { default: "Mirevo", template: "%s · Mirevo" },
+  description: "Mirevo — Invest • Grow • Earn",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#07235c",
+  themeColor: "#0d2a21",
   viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable} h-full`}>
+    <html lang="en" className={`${manrope.variable} ${bricolage.variable} h-full`}>
       <body className="min-h-full flex flex-col">
         {children}
         <Toaster position="top-center" richColors closeButton />

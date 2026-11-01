@@ -12,7 +12,7 @@ export default function ForgotPasswordPage() {
       <div className="grid size-12 place-items-center rounded-full bg-primary-soft text-primary">
         <KeyRound />
       </div>
-      <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">Forgot your password?</h2>
+      <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight">Forgot your password?</h2>
       <p className="mt-2 text-sm text-muted-foreground">
         Password resets are handled by our support team for now. Contact us from the phone number on
         your account and we will help you get back in.

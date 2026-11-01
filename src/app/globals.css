@@ -1,38 +1,43 @@
 @import "tailwindcss";
 
 /*
-  Stocks design tokens.
-  Palette: deep royal navy + bright blue. Change values here only —
-  components reference semantic tokens (bg-primary, text-success, ...).
+  Mirevo design tokens.
+  Palette: warm cream paper, deep forest ink, emerald primary, saffron accent.
+  Surfaces are flat with crisp ink outlines and hard offset shadows (no blur).
+  Change values here only — components reference semantic tokens
+  (bg-primary, bg-accent, text-success, ...).
 */
 :root {
-  --background: #eaf1fd;
-  --foreground: #101828;
-  --card: rgb(255 255 255 / 0.62);
-  --card-foreground: #101828;
-  --muted: rgb(30 80 190 / 0.07);
-  --muted-foreground: #5b6478;
-  --border: rgb(255 255 255 / 0.65);
-  --input: rgb(30 80 190 / 0.16);
-  --ring: #1a6fe0;
+  --background: #f3eee3;
+  --foreground: #10231c;
+  --card: #fffcf5;
+  --card-foreground: #10231c;
+  --muted: rgb(16 35 28 / 0.06);
+  --muted-foreground: #5f6b63;
+  --border: rgb(16 35 28 / 0.14);
+  --input: rgb(16 35 28 / 0.28);
+  --ring: #0f6b4f;
 
-  --primary: #1a62d6;
+  --primary: #0f6b4f;
   --primary-foreground: #ffffff;
-  --primary-soft: #e1ecfc;
+  --primary-soft: #d9eedf;
 
-  --navy: #07235c;
-  --navy-2: #0c3180;
-  --navy-foreground: #e8eefb;
-  --navy-muted: #9fb2d9;
+  --accent: #ffc83d;
+  --accent-foreground: #10231c;
 
-  --success: #1f8a5b;
-  --success-soft: #dff3ea;
-  --warning: #b7791f;
-  --warning-soft: #fbefd5;
-  --danger: #c0392b;
-  --danger-soft: #fbe3e0;
+  --ink: #0d2a21;
+  --ink-2: #16402f;
+  --ink-foreground: #f3eee3;
+  --ink-muted: #9db8ac;
 
-  --radius: 1.1rem;
+  --success: #17803f;
+  --success-soft: #d8f0df;
+  --warning: #9a5b00;
+  --warning-soft: #fdecc3;
+  --danger: #c7352a;
+  --danger-soft: #fbdcd8;
+
+  --radius: 0.9rem;
 }
 
 @theme inline {
@@ -48,10 +53,12 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-soft: var(--primary-soft);
-  --color-navy: var(--navy);
-  --color-navy-2: var(--navy-2);
-  --color-navy-foreground: var(--navy-foreground);
-  --color-navy-muted: var(--navy-muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
@@ -59,12 +66,13 @@
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-sora), var(--font-inter), sans-serif;
-  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 8px 28px -10px rgb(7 35 92 / 0.18);
-  --shadow-pop: 0 24px 60px -16px rgb(7 35 92 / 0.38);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-manrope), sans-serif;
+  --shadow-hard: 4px 4px 0 0 var(--ink);
+  --shadow-hard-sm: 2px 2px 0 0 var(--ink);
+  --shadow-pop: 8px 8px 0 0 var(--ink);
 }
 
 * {
@@ -72,35 +80,53 @@
 }
 
 body {
-  background:
-    radial-gradient(60rem 40rem at 8% -10%, rgb(56 130 255 / 0.28), transparent 60%),
-    radial-gradient(50rem 36rem at 100% 10%, rgb(14 165 233 / 0.20), transparent 60%),
-    radial-gradient(48rem 40rem at 50% 110%, rgb(26 98 214 / 0.22), transparent 60%),
-    var(--background);
-  background-attachment: fixed;
+  background-color: var(--background);
+  /* faint dot grid, like ledger paper */
+  background-image: radial-gradient(rgb(16 35 28 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Liquid glass surface: frosted blur, bright rim, soft depth */
-.glass {
-  background: linear-gradient(135deg, rgb(255 255 255 / 0.72), rgb(255 255 255 / 0.42));
-  border: 1px solid rgb(255 255 255 / 0.7);
-  backdrop-filter: blur(22px) saturate(1.6);
-  -webkit-backdrop-filter: blur(22px) saturate(1.6);
-  box-shadow: var(--shadow-card);
+/* Flat paper surface with an ink outline */
+.surface {
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
 }
-.glass-dark {
-  background: linear-gradient(160deg, rgb(12 49 128 / 0.82), rgb(7 35 92 / 0.78));
-  border: 1px solid rgb(255 255 255 / 0.14);
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.18) inset, 0 20px 50px -18px rgb(7 35 92 / 0.55);
+.surface-hard {
+  box-shadow: var(--shadow-hard);
+}
+.surface-ink {
+  background: var(--ink);
+  color: var(--ink-foreground);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
 }
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
+
+/* Small uppercase section label */
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
 }
 
 /* Keeps content clear of the fixed mobile nav and iOS home indicator */

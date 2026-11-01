@@ -8,25 +8,26 @@ interface Props {
   portfolioValue: number;
 }
 
+/** One ledger-style card with a row per figure. */
 export function PortfolioCard({ totalInvestment, sharesOwned, portfolioValue }: Props) {
   const items = [
-    { label: "Total Investment", value: formatMoney(totalInvestment), icon: PiggyBank },
-    { label: "Shares Owned", value: String(sharesOwned), icon: Layers },
-    { label: "Portfolio Value", value: formatMoney(portfolioValue), icon: LineChart },
+    { label: "Total invested", value: formatMoney(totalInvestment), icon: PiggyBank },
+    { label: "Packages owned", value: String(sharesOwned), icon: Layers },
+    { label: "Portfolio value", value: formatMoney(portfolioValue), icon: LineChart },
   ];
   return (
-    <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+    <Card className="flex flex-col divide-y divide-ink/15 overflow-hidden">
       {items.map((it) => (
-        <Card key={it.label} className="flex items-center gap-4 p-4 transition-shadow hover:shadow-pop lg:p-5">
-          <div className="grid size-11 shrink-0 place-items-center rounded-md bg-primary-soft text-primary">
+        <div key={it.label} className="flex flex-1 items-center gap-4 px-5 py-4">
+          <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
             <it.icon className="size-5" />
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-medium text-muted-foreground">{it.label}</p>
-            <p className="tabular truncate font-display text-lg font-semibold">{it.value}</p>
+            <p className="eyebrow">{it.label}</p>
+            <p className="tabular truncate font-display text-xl font-extrabold">{it.value}</p>
           </div>
-        </Card>
+        </div>
       ))}
-    </div>
+    </Card>
   );
 }

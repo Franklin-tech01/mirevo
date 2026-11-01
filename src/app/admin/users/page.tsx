@@ -18,7 +18,7 @@ export default async function AdminUsersPage({
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold tracking-tight">Users</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight">Users</h1>
       <p className="mt-1 text-sm text-muted-foreground">Everyone who has signed up, newest first.</p>
       <div className="mt-5">
         <SearchBox q={data.q} placeholder="Search name, phone or email" />

@@ -9,7 +9,7 @@ export default async function MarketplacePage() {
   const { data, error } = await getShares();
   return (
     <>
-      <PageHeader title="Marketplace" description="Browse and buy available Stocks shares." />
+      <PageHeader title="Packages" description="Pick a package and earn every day for 40 days." />
       {error ? <ErrorNotice message={error} /> : <MarketplaceView shares={data} />}
     </>
   );

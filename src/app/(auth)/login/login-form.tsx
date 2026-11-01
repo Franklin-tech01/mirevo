@@ -52,8 +52,8 @@ export function LoginForm() {
 
   return (
     <div>
-      <h2 className="font-display text-2xl font-semibold tracking-tight">Welcome back</h2>
-      <p className="mt-1.5 text-sm text-muted-foreground">Sign in to your Stocks account.</p>
+      <h2 className="font-display text-3xl font-extrabold tracking-tight">Welcome back</h2>
+      <p className="mt-1.5 text-sm text-muted-foreground">Sign in to your Mirevo account.</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-4" noValidate>
         <Field label="Phone number" htmlFor="phone" error={errors.phone?.message}>
@@ -117,7 +117,7 @@ export function LoginForm() {
       </form>
 
       <p className="mt-6 text-center text-sm text-muted-foreground">
-        New to Stocks?{" "}
+        New to Mirevo?{" "}
         <Link href="/register" className="font-semibold text-foreground hover:underline">
           Create account
         </Link>

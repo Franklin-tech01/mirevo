@@ -14,7 +14,7 @@ export default async function AdminPurchasesPage({ searchParams }: { searchParam
 
   return (
     <div>
-      <h1 className="font-display text-2xl font-semibold tracking-tight">Share Purchases</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight">Share Purchases</h1>
       <p className="mt-1 text-sm text-muted-foreground">Every share purchase, newest first.</p>
       <div className="mt-5">
         <SearchBox q={data.q} placeholder="Search name, phone or stock" />
@@ -22,7 +22,7 @@ export default async function AdminPurchasesPage({ searchParams }: { searchParam
 
       {purchases.length === 0 ? (
         <div className="mt-6">
-          <EmptyState icon={<ShoppingBag />} title="No purchases yet" description="Share purchases will appear here as users buy." />
+          <EmptyState icon={<ShoppingBag />} title="No purchases yet" description="Package purchases will appear here as users buy." />
         </div>
       ) : (
         <Card className="mt-6 overflow-hidden">

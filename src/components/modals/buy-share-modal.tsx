@@ -51,16 +51,16 @@ export function BuyShareModal({
         <DialogHeader title="Confirm purchase" description="Review your order before continuing." />
         {share && (
           <div className="space-y-4 p-6 pt-3">
-            <div className="flex items-center gap-3 rounded-lg border bg-muted/50 p-3">
+            <div className="flex items-center gap-3 rounded-xl border-[1.5px] border-ink bg-primary-soft p-3">
               <LogoMark className="size-11" />
               <div>
                 <p className="font-display font-semibold">{share.name}</p>
-                <p className="text-xs text-muted-foreground">{share.description ?? "Stocks Share"}</p>
+                <p className="text-xs text-muted-foreground">{share.description ?? "Mirevo Package"}</p>
               </div>
             </div>
 
             <dl className="space-y-3 text-sm">
-              <Row label="Share" value={share.name} />
+              <Row label="Package" value={share.name} />
               <Row label="Price" value={formatMoney(share.price)} />
               <div className="flex items-center justify-between">
                 <dt className="text-muted-foreground">Quantity</dt>
@@ -92,7 +92,7 @@ export function BuyShareModal({
               </div>
               <div className="flex items-center justify-between border-t pt-3">
                 <dt className="font-medium">Total</dt>
-                <dd className="tabular font-display text-xl font-semibold">
+                <dd className="tabular font-display text-xl font-extrabold">
                   {formatMoney(share.price * quantity)}
                 </dd>
               </div>
@@ -104,7 +104,7 @@ export function BuyShareModal({
               </div>
             </dl>
 
-            <p className="text-xs text-muted-foreground">Paid from your Stocks balance. Deposit funds first if needed.</p>
+            <p className="text-xs text-muted-foreground">Paid from your Mirevo balance. Deposit funds first if needed. Profit is paid daily for 40 days.</p>
 
             <Button className="w-full" size="lg" onClick={confirm} disabled={busy}>
               {busy && <Loader2 className="animate-spin" />} Confirm Purchase

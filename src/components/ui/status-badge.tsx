@@ -24,7 +24,7 @@ export function StatusBadge({
   const m = kind === "share" ? share[status as ShareStatus] : tx[status as TxStatus];
   return (
     <Badge tone={m.tone}>
-      <span className="size-1.5 rounded-full bg-current" />
+      <span className="size-1.5 rounded-sm bg-current" />
       {m.label}
     </Badge>
   );

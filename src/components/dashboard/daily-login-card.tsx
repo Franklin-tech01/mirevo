@@ -38,11 +38,11 @@ export function DailyLoginCard({ reward }: { reward: LoginReward | null }) {
     <Card className="p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-md bg-navy text-sky-300">
+          <div className="grid size-11 place-items-center rounded-lg bg-ink text-accent">
             <CalendarCheck className="size-5" />
           </div>
           <div>
-            <h2 className="font-display font-semibold">Daily Login Bonus</h2>
+            <h2 className="font-display text-lg font-extrabold">Daily Login Bonus</h2>
             <p className="text-sm text-muted-foreground">
               Log in daily to earn {formatMoney(DAILY_LOGIN_BONUS)} and keep your streak.
             </p>
@@ -56,13 +56,13 @@ export function DailyLoginCard({ reward }: { reward: LoginReward | null }) {
       <div className="mt-5 grid grid-cols-2 gap-3">
         <div className="rounded-md bg-muted/60 p-3">
           <p className="text-xs text-muted-foreground">Current streak</p>
-          <p className="flex items-center gap-1.5 font-display text-xl font-semibold">
+          <p className="flex items-center gap-1.5 font-display text-xl font-extrabold">
             <Flame className="size-5 text-primary" /> {streak} {streak === 1 ? "day" : "days"}
           </p>
         </div>
         <div className="rounded-md bg-muted/60 p-3">
           <p className="text-xs text-muted-foreground">Daily bonus</p>
-          <p className="tabular font-display text-xl font-semibold">
+          <p className="tabular font-display text-xl font-extrabold">
             {BONUSES_ENABLED ? formatMoney(DAILY_LOGIN_BONUS) : "Paused"}
           </p>
         </div>
@@ -80,9 +80,9 @@ export function DailyLoginCard({ reward }: { reward: LoginReward | null }) {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
                   className={cn(
-                    "grid size-8 place-items-center rounded-full border text-xs font-semibold sm:size-9",
+                    "grid size-8 place-items-center rounded-lg border-[1.5px] border-ink text-xs font-bold sm:size-9",
                     done
-                      ? "border-primary bg-primary text-primary-foreground"
+                      ? "border-ink bg-accent text-accent-foreground"
                       : isToday
                         ? "border-primary text-foreground"
                         : "bg-card text-muted-foreground",
@@ -101,7 +101,7 @@ export function DailyLoginCard({ reward }: { reward: LoginReward | null }) {
       </ol>
 
       <p className="mt-4 text-xs text-muted-foreground">
-        Bonus money is added to your balance and can be withdrawn after your first share purchase.
+        Bonus money is added to your balance and can be withdrawn after your first package purchase.
       </p>
     </Card>
   );

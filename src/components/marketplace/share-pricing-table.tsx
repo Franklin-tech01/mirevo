@@ -12,7 +12,7 @@ import type { Share } from "@/lib/types";
 
 const tierTone = { standard: "neutral", premium: "brand", vip: "navy" } as const;
 
-/** Price list: header row on desktop, stacked rows on mobile. Data comes from the `shares` table. */
+/** Compact price list: header row on desktop, stacked rows on mobile. Data comes from the `shares` table. */
 export function SharePricingTable({ shares }: { shares: Share[] }) {
   const { openBuy } = useModals();
 
@@ -20,11 +20,11 @@ export function SharePricingTable({ shares }: { shares: Share[] }) {
     <Card className="overflow-hidden">
       <div
         aria-hidden
-        className="hidden grid-cols-[1.6fr_1fr_1fr_1fr_auto] items-center gap-4 bg-navy px-5 py-3 text-xs font-semibold uppercase tracking-wide text-navy-foreground md:grid"
+        className="hidden grid-cols-[1.6fr_1fr_1fr_1fr_auto] items-center gap-4 bg-ink px-5 py-3 text-xs font-bold uppercase tracking-widest text-ink-foreground md:grid"
       >
-        <span>Share</span>
+        <span>Package</span>
         <span>Price</span>
-        <span>Daily Earnings</span>
+        <span>Daily profit</span>
         <span>Status</span>
         <span className="w-24" />
       </div>
@@ -33,31 +33,30 @@ export function SharePricingTable({ shares }: { shares: Share[] }) {
         {shares.map((s) => (
           <li
             key={s.id}
-            className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 px-4 py-4 transition-colors hover:bg-muted/50 md:grid-cols-[1.6fr_1fr_1fr_1fr_auto] md:px-5"
+            className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 px-4 py-4 transition-colors hover:bg-accent/20 md:grid-cols-[1.6fr_1fr_1fr_1fr_auto] md:px-5"
           >
             <div className="flex min-w-0 items-center gap-3">
               <LogoMark className="size-10 shrink-0" />
               <div className="min-w-0">
-                <p className="flex flex-wrap items-center gap-2 font-semibold">
+                <p className="flex flex-wrap items-center gap-2 font-bold">
                   {s.name}
-                  {s.badge && <Badge tone="brand">{s.badge}</Badge>}
+                  {s.badge && <Badge tone="warning">{s.badge}</Badge>}
                 </p>
                 <p className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Badge tone={tierTone[s.tier]} className="px-2 py-0 text-[10px] uppercase">
-                    {s.tier}
-                  </Badge>
+                  <Badge tone={tierTone[s.tier]}>{s.tier}</Badge>
                   {s.symbol}
                 </p>
               </div>
             </div>
 
-            <p className="tabular text-right font-display text-lg font-semibold md:text-left">
+            <p className="tabular text-right font-display text-lg font-extrabold md:text-left">
               {formatMoney(s.price)}
             </p>
 
-            <p className="tabular text-right text-sm font-semibold text-success md:text-left">
-              {formatMoney(s.daily_earning)}<span className="text-muted-foreground">/day</span>
-              <span className="block text-xs font-normal text-muted-foreground">
+            <p className="tabular text-right text-sm font-extrabold text-success md:text-left">
+              {formatMoney(s.daily_earning)}
+              <span className="font-medium text-muted-foreground">/day</span>
+              <span className="block text-xs font-medium text-muted-foreground">
                 {PLAN_DURATION_DAYS} days · {formatMoney(s.daily_earning * PLAN_DURATION_DAYS)}
               </span>
             </p>
@@ -68,11 +67,12 @@ export function SharePricingTable({ shares }: { shares: Share[] }) {
 
             <Button
               size="sm"
+              variant="accent"
               className="w-24 justify-self-end"
               disabled={s.status !== "available"}
               onClick={() => openBuy(s)}
             >
-              Buy
+              Invest
             </Button>
           </li>
         ))}

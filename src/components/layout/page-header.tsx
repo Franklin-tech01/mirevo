@@ -8,10 +8,10 @@ export function PageHeader({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+    <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b-[1.5px] border-ink pb-5">
       <div>
-        <h1 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">{title}</h1>
-        {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
+        <h1 className="font-display text-3xl font-extrabold tracking-tight md:text-4xl">{title}</h1>
+        {description && <p className="mt-1.5 text-sm font-medium text-muted-foreground">{description}</p>}
       </div>
       {action}
     </div>
@@ -20,7 +20,7 @@ export function PageHeader({
 
 export function ErrorNotice({ message }: { message: string }) {
   return (
-    <div role="alert" className="rounded-lg border border-danger/30 bg-danger-soft p-4 text-sm text-danger">
+    <div role="alert" className="rounded-xl border-[1.5px] border-danger bg-danger-soft p-4 text-sm font-medium text-danger">
       Something went wrong loading this section. {message}
     </div>
   );
@@ -36,11 +36,9 @@ export function EmptyState({
   description: string;
 }) {
   return (
-    <div className="flex flex-col items-center glass rounded-xl border-dashed px-6 py-12 text-center">
-      <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground">
-        {icon}
-      </div>
-      <p className="mt-4 font-semibold">{title}</p>
+    <div className="flex flex-col items-center rounded-2xl border-[1.5px] border-dashed border-ink/50 bg-card/60 px-6 py-12 text-center">
+      <div className="grid size-12 place-items-center rounded-xl bg-accent text-accent-foreground">{icon}</div>
+      <p className="mt-4 font-display text-lg font-extrabold">{title}</p>
       <p className="mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
     </div>
   );

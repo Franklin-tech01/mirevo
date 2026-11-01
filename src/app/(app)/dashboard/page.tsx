@@ -48,42 +48,49 @@ export default async function DashboardPage() {
 		.filter(Boolean) as string[];
 
 	return (
-		<div className='space-y-6'>
+		<div>
 			<DashboardHeader
 				name={firstName(profile.data?.full_name, realEmail(user?.email))}
 			/>
-			{errors.length > 0 && <ErrorNotice message={errors[0]} />}
-
-			<div className='grid gap-4 lg:grid-cols-[1.4fr_1fr]'>
-				<BalanceCard
-					balance={portfolio.data?.balance ?? 0}
-					lockedBonus={portfolio.data?.locked_bonus ?? 0}
-				/>
-				<PortfolioCard
-					totalInvestment={portfolio.data?.total_investment ?? 0}
-					sharesOwned={sharesOwned}
-					portfolioValue={portfolio.data?.total_value ?? 0}
-				/>
-			</div>
-
-			<QuickActions />
-
-			<HoldingsCard holdings={holdings.data} />
-
-			<ShareEarningsCard holdings={holdings.data} earnings={shareEarnings.data} />
-
-			{profile.data && (
-				<ReferralCard
-					code={profile.data.ref_code}
-					baseUrl={baseUrl}
-					count={referrals.data}
-					earnings={referralEarnings.data}
-				/>
+			{errors.length > 0 && (
+				<div className="mb-6">
+					<ErrorNotice message={errors[0]} />
+				</div>
 			)}
 
-			<div className='grid gap-4 lg:grid-cols-2'>
-				<WelcomeBonusCard bonus={bonus.data} hasPurchased={holdings.data.length > 0} />
-				<DailyLoginCard reward={reward.data} />
+			<div className="space-y-6">
+				<div className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+					<BalanceCard
+						balance={portfolio.data?.balance ?? 0}
+						lockedBonus={portfolio.data?.locked_bonus ?? 0}
+					/>
+					<PortfolioCard
+						totalInvestment={portfolio.data?.total_investment ?? 0}
+						sharesOwned={sharesOwned}
+						portfolioValue={portfolio.data?.total_value ?? 0}
+					/>
+				</div>
+
+				<QuickActions />
+
+				<div className="grid items-start gap-5 lg:grid-cols-[1.4fr_1fr]">
+					<div className="space-y-5">
+						<HoldingsCard holdings={holdings.data} />
+						<ShareEarningsCard holdings={holdings.data} earnings={shareEarnings.data} />
+						{profile.data && (
+							<ReferralCard
+								code={profile.data.ref_code}
+								baseUrl={baseUrl}
+								count={referrals.data}
+								earnings={referralEarnings.data}
+							/>
+						)}
+					</div>
+					<div className="space-y-5">
+						<WelcomeBonusCard bonus={bonus.data} hasPurchased={holdings.data.length > 0} />
+						<DailyLoginCard reward={reward.data} />
+					</div>
+				</div>
 			</div>
 		</div>
 	);

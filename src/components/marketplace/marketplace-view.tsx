@@ -17,7 +17,7 @@ const filters: { label: string; value: "all" | ShareTier }[] = [
 
 export function MarketplaceView({ shares }: { shares: Share[] }) {
   const [tier, setTier] = useState<"all" | ShareTier>("all");
-  const [view, setView] = useState<"table" | "cards">("table");
+  const [view, setView] = useState<"table" | "cards">("cards");
   const visible = useMemo(
     () => (tier === "all" ? shares : shares.filter((s) => s.tier === tier)),
     [shares, tier],
@@ -25,11 +25,11 @@ export function MarketplaceView({ shares }: { shares: Share[] }) {
 
   return (
     <div>
-      <div className="mb-5 flex items-center justify-between gap-3">
+      <div className="mb-6 flex items-center justify-between gap-3">
         <div
           role="tablist"
           aria-label="Filter by tier"
-          className="-ml-4 flex gap-2 overflow-x-auto pl-4 md:ml-0 md:pl-0"
+          className="-ml-4 flex gap-2 overflow-x-auto py-1 pl-4 md:ml-0 md:pl-0"
         >
           {filters.map((f) => (
             <button
@@ -38,10 +38,10 @@ export function MarketplaceView({ shares }: { shares: Share[] }) {
               aria-selected={tier === f.value}
               onClick={() => setTier(f.value)}
               className={cn(
-                "h-10 shrink-0 rounded-full border px-5 text-sm font-semibold transition-colors",
+                "h-10 shrink-0 rounded-lg border-[1.5px] border-ink px-4 text-sm font-bold transition-all",
                 tier === f.value
-                  ? "border-navy bg-navy text-navy-foreground"
-                  : "glass text-muted-foreground hover:bg-white/80",
+                  ? "bg-ink text-accent shadow-hard-sm"
+                  : "bg-card text-muted-foreground hover:bg-muted",
               )}
             >
               {f.label}
@@ -49,11 +49,11 @@ export function MarketplaceView({ shares }: { shares: Share[] }) {
           ))}
         </div>
 
-        <div className="hidden shrink-0 glass rounded-full p-1 sm:flex" role="group" aria-label="View">
+        <div className="hidden shrink-0 overflow-hidden rounded-lg border-[1.5px] border-ink sm:flex" role="group" aria-label="View">
           {(
             [
-              ["table", List, "Table view"],
               ["cards", LayoutGrid, "Card view"],
+              ["table", List, "Table view"],
             ] as const
           ).map(([v, Icon, label]) => (
             <button
@@ -62,8 +62,8 @@ export function MarketplaceView({ shares }: { shares: Share[] }) {
               aria-pressed={view === v}
               onClick={() => setView(v)}
               className={cn(
-                "grid size-8 place-items-center rounded-full transition-colors",
-                view === v ? "bg-navy text-navy-foreground" : "text-muted-foreground hover:bg-muted",
+                "grid size-9 place-items-center transition-colors",
+                view === v ? "bg-ink text-accent" : "bg-card text-muted-foreground hover:bg-muted",
               )}
             >
               <Icon className="size-4" />
@@ -75,13 +75,13 @@ export function MarketplaceView({ shares }: { shares: Share[] }) {
       {visible.length === 0 ? (
         <EmptyState
           icon={<Layers />}
-          title="No shares here yet"
+          title="No packages here yet"
           description={tier === "all" ? "Packages will appear as soon as they are published." : "No packages in this tier right now."}
         />
       ) : view === "table" ? (
         <SharePricingTable shares={visible} />
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((s) => (
             <ShareCard key={s.id} share={s} />
           ))}
